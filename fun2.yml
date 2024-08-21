@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Simple EC2 instance creation
+
+Resources:
+  MyInstance1:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-08e2ed24aa233a8cb
+      SubnetId: subnet-02555caf50c2d694d
+      Tags:
+        - Key: Name
+          Value: MyEC2Instance
+
+  MyInstance2:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-03ed1381c73a5660e
+      Tags:
+        - Key: Name
+          Value: !Join ["-", ["my", "inst", "from", "cloudformation"]]

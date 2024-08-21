@@ -1,0 +1,10 @@
+# creating new s3 bucket
+
+Resources:
+  MyS3Bucket:
+    Type: 'AWS::S3::Bucket' 
+    Properties:
+      BucketName: aditi--pathak-pattagobhi-bucket
+      Tags: 
+        - Key: CloudFormationLab
+          Value: Aditi Pathak

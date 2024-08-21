@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'EC2 instance with KeyPair and Tag'
+
+Parameters:
+  paramTagValue: 
+    Description: I am creating function.
+    Type: String
+  paramKeyName: 
+    Description: Name of an existing EC2 KeyPair to enable SSH access into the server
+    Type: 'AWS::EC2::KeyPair::KeyName'
+
+Resources:
+  myEc2Instance: 
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-08e2ed24aa233a8cb
+      Tags:
+        - Key: CloudFormationLab
+          Value: !Ref paramTagValue 
+      KeyName: !Ref paramKeyName
+
+Outputs:
+  InstanceId:
+    Description: The Instance ID of the created EC2 instance
+    Value: !Ref myEc2Instance
+  PublicDNS:
+    Description: The Public DNS of the created EC2 instance
+    Value: !GetAtt myEc2Instance.PublicDnsName
